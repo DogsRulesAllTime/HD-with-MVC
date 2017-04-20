@@ -8,5 +8,6 @@ if (!empty($_POST['login']) AND !empty($_POST['psw'])) {
   $login = $_POST['login'];
    $password = $_POST['psw'];
 login("SELECT * FROM `account` WHERE `login` = '$login' AND `psw` = '$password'",$login,$password);
+
 }
 }

@@ -8,23 +8,24 @@ function connectDB(){
 }
 
 
-
+//защита от перехода
 function reurl(){
     echo "вы не можете прочитать скрытый текст";
-    $url ="http://localhost:8383/HD-v2.0/"; //here you set the url
-    $time_out = 3; //here you set how many seconds to untill refresh
+    $url ="http://localhost:8383/mvc/"; //here you set the url
+    $time_out = 2; //here you set how many seconds to untill refresh
     header("refresh: $time_out; url=$url");
     die();
 
 }
 function protect($a){
-    if (isset($a)){
-        // echo "этот текст видят только зарегистрированыые пользователи";
+    if (!empty($a)){
+         echo "этот текст видят только зарегистрированыые пользователи";
     } else{
         reurl();
     }
 }
 
+//выборка
 function selectMANY($query){
 	$connect = connectDB();
     $result = mysqli_query($connect , $query);
@@ -60,6 +61,9 @@ if ( mysqli_num_rows($zapros) == 0){
     exitbtn();
     echo   "пароль или логин не верный!";
 }elseif(mysqli_num_rows($zapros) >= 1){
+    $r = [];
+    $r = $vibor;
+    $_SESSION = selectMANY("SELECT * FROM `users` WHERE `id` = {$r['id_sotr']} ");
     header('location: /mvc/panel.php');
     echo  "пароль truee";
 }
