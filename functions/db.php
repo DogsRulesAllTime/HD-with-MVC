@@ -36,6 +36,15 @@ function selectMANY($query){
     return $rez;
 }
 
+function selectaray($query){
+    $connect = connectDB();
+    $result = mysqli_query($connect , $query);
+    $rez = [];
+    while ($row = mysqli_fetch_assoc($result) ){
+        $rez[] = $row;
+    }
+    return $rez;
+}
 // $items = selectMANY("SELECT * FROM `account` " );
 // var_dump($items);
 // echo "<br>";

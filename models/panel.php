@@ -17,6 +17,7 @@ var_dump($_SESSION);
 
 function dostupCheck(){
 	if ($_SESSION['dostup'] ==0) {
+		$a = getInfo();
 		require_once __DIR__ . '/../views/userpanel.php';
 	 	echo "dostup  usera";
 	 } elseif ($_SESSION['dostup'] >=1) {
@@ -38,5 +39,16 @@ function logout(){
 }
 logout();
 
+// echo $_SESSION['id'];
+function getInfo()
+{
+$a = selectaray("SELECT * FROM users INNER JOIN zapiski ON users.id = zapiski.specialist WHERE id_otprav = {$_SESSION['id']}");
+return $a;
+}
+// $a = getInfo();
+
+// foreach ($a as $key=>$value  ) {
+// 	echo $value['id'];
+// }
 
 
